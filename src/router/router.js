@@ -15,6 +15,7 @@ const router = new VueRouter({
         // {  path: '/about', About},
         { path: '/home',component:"home", component: require('../components/Home.vue').default},
         {  path: '/about', key:"about",component: require('../components/About.vue').default},
+        {  path: '/testnetwork', key:"about",component: require('../components/TestNetwork.vue').default},
     ]
 })
 // 输出router

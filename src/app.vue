@@ -6,6 +6,9 @@
         <li>
             <router-link to="/about">About</router-link>
         </li>
+        <li>
+            <router-link to="/testnetwork">Testnetwork</router-link>
+        </li>
         <!-- 路由匹配到的组件将渲染在这里 -->
         <router-view></router-view>
     </div>
