@@ -9,6 +9,13 @@
         <li>
             <router-link to="/testnetwork">Testnetwork</router-link>
         </li>
+
+        <li>
+            <router-link to="/invite/ff">Invite/ff</router-link>
+        </li>
+        <li>
+            <router-link to="/invite/ff2">Invite/ff2</router-link>
+        </li>
         <!-- 路由匹配到的组件将渲染在这里 -->
         <router-view></router-view>
     </div>

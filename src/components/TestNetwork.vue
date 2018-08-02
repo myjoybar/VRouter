@@ -25,7 +25,7 @@
                 // method:"/data/forecast/101010100.html?_=1381891660081",
                 dataURL: "https://106.14.139.72",
                 method: "/constellation/findallbroadcast?pageNumber=0&pageSize=50&constellationType=1&sortDirection=0",
-                localPath: "../../static/meta.json",
+                localPath: "../../static/data/meta.json",
 
             }
         },
