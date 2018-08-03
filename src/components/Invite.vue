@@ -8,61 +8,120 @@
         </div>
     </div>
 </template>
-
 <script>
-    import {browser} from '../../static/js/Browser.js' //注意路径
-    import {getGooglePlayUrlByChannel} from '../../static/js/GooglePlayLinks.js' //注意路径
-    import {getChannel,getLanguage,getModule} from '../../static/js/UrlPathHander.js' //注意路径
+    import axios from 'axios';
+    import {browser} from '../../static/js/Browser.js'
+    import {getGooglePlayUrlByChannel} from '../../static/js/GooglePlayLinks.js'
+    import {getAppStoreUrlByChannel} from '../../static/js/AppStoreLinks.js'
+    import {getChannel, getLanguage, getModule} from '../../static/js/UrlPathHander.js'
+    import {loadLocalMetaJsonInfo} from '../../static/js/LoadLocalMetaJsonInfo.js'
+    import Vue from 'vue'
+
+    var vm = new Vue({})
     export default {
         name: 'home',
-        created() {
-            console.log("created")
-            // console.log("this.$route.path=" + this.$route.path)
-            // console.log("window.location.href=" + window.location.href)
-            // console.log("this.$route.params=" + this.$route.params)
-            //判断是否IE内核
-            if (browser.versions.mobile) {
-                console.log("is mobile");
-
-
+        head: {
+            title: function () {
+                return {
+                    inner: this.globalConfig.og_title
+                }
+            },
+            meta: function () {
+                return [
+                    {name: 'description', content: this.globalConfig.description},
+                    {property: 'og:title', content: this.globalConfig.og_title},
+                    {property: 'og:image', content: this.globalConfig.og_image},
+                    {property: 'og:site_name', content: this.globalConfig.og_site_name},
+                    {property: 'og:url', content: this.globalConfig.og_url},
+                    {property: 'og:type', content: this.globalConfig.og_type},
+                ]
             }
-            // 处理meta
-            var path = this.$route.path;
-            var realChannel = getChannel(path);
-            var language = getLanguage(path);
-            var module = getModule(path);
-            console.log("path = " + path);
-            console.log("realChannel = " + realChannel);
-            console.log("language = " + language);
-            console.log("module = " + module);
+        },
 
+        data() {
+            return {
 
-            if (browser.versions.android) {
+                msg: ' I am page invite',
+                isShow: false,
+                fullUrl: "",
+            }
+        }
+        ,
+        methods: {
+            initData: function () {
+                //判断是否IE内核
+                if (browser.versions.mobile) {
+                    console.log("is mobile");
+                }
+                this.fullUrl = window.location.href;
+                // 处理meta
+                var path = this.$route.path;
+                console.log("path= "+path);
+                var realChannel = getChannel(path);
+                var language = getLanguage(path);
+                var module = getModule(path);
+                console.log("path = " + path);
+                console.log("realChannel = " + realChannel);
+                console.log("language = " + language);
+                console.log("module = " + module);
+            }
+            ,
+            gotoAppStore: function (event) {
+                console.log("is IOS");
+                this.isShow = true;
+                var path = this.$route.path;
+                var realChannel = getChannel(path);
+                var url = getAppStoreUrlByChannel(realChannel)
+                console.log("url = " + url);
+            }
+            ,
+            gotoGooglePlay: function () {
                 console.log("is Android");
                 this.isShow = false;
                 var path = this.$route.path;
                 var realChannel = getChannel(path);
                 var url = getGooglePlayUrlByChannel(realChannel)
                 console.log("url = " + url);
-               // window.location.href = url;
+                // window.location.href = url;
+            }
+
+        },
+        beforeCreate() {
+            console.log("beforeCreate")
+        },
+        created() {
+            console.log("created")
+            // console.log("this.$route.path=" + this.$route.path)
+            // console.log("window.location.href=" + window.location.href)
+            // console.log("this.$route.params=" + this.$route.params)
+            this.initData()
+        },
+        mounted() {
+            console.log("mounted")
+            if (browser.versions.android) {
+                this.gotoGooglePlay();
             }
             if (browser.versions.ios) {
-                console.log("is IOS");
-                this.isShow = true;
-            }
-
-        },
-        data() {
-            return {
-                msg: ' I am page invite',
-                isShow: false
+                this.gotoAppStore();
             }
         },
-        methods: {
-            gotoAppStore: function (event) {
-            }
+        beforeRouteEnter(to, from, next) {
+            var path = to.path
+            console.log('beforeRouteEnter222= ' + path)
+            loadLocalMetaJsonInfo(function () {
+                vm.globalConfig.setog_url( window.location.href)
+                next();
+            });
+        },
+        beforeCreate() {//组件生命周期函数
+            console.log('beforeCreate222')
+        },
+        beforeRouteLeave(to, from, next) {
+            console.log('beforeRouteLeave2222')
+        },
+        beforeRouteUpdate(to, from, next) {
+            console.log('beforeRouteUpdate2222')
         }
-
     }
 
 </script>

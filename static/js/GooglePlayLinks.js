@@ -114,7 +114,8 @@ function getGooglePlayUrlByChannel2(from, invitekey) {
             break;
 
         default:
-            clickLinks = "https://play.google.com/store/apps/details?id=me.talkyou.app.im&referrer=utm_source%3D";
+            var otherLink = "otherLink"
+            clickLinks = "https://play.google.com/store/apps/details?id=me.talkyou.app.im&referrer=utm_source%3D"+otherLink;
     }
     if(!isEmpty(invitekey)){
         clickLinks = clickLinks+ "%26utm_content%3Dautoinvite_"+invitekey;

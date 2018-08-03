@@ -45,10 +45,6 @@ function getModule(fullPath) {
     return realChannel;
 }
 
-
-
-
-
 function findIndex(str,cha,num){
     var x=str.indexOf(cha);
     for(var i=0;i<num;i++){

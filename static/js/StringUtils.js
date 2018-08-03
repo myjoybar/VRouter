@@ -1,3 +1,5 @@
+
+
 function findIndex(str,cha,num){
     var x=str.indexOf(cha);
     for(var i=0;i<num;i++){
@@ -13,7 +15,6 @@ function isEmpty(obj){
         return false;
     }
 }
-
 
 export {
     findIndex,

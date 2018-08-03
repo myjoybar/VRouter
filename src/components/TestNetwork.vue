@@ -29,6 +29,9 @@
 
             }
         },
+        mounted() {
+           // this.greetLocal();
+        },
         methods: {
             greetRemote: function (event) {
                 // alert('Hello ' + this.name + '!')

@@ -22,7 +22,21 @@
 </template>
 
 <script>
-
+    export default {
+        // beforeCreate(){//组件生命周期函数
+        //     console.log('beforeCreate1111')
+        // },
+        // beforeRouteEnter(to,from,next){
+        //     console.log('beforRouteEnter')
+        //
+        // },
+        // beforeRouteLeave (to, from, next) {
+        //     console.log('beforeRouteLeave')
+        // },
+        // beforeRouteUpdate (to, from, next) {
+        //     console.log('beforeRouteUpdate')
+        // }
+    }
 </script>
 
 <!-- 设置scoped 表示当前组件下的id只在当前组件起作用，不会跟其他组件引起冲突 -->

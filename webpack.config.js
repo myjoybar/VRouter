@@ -23,6 +23,7 @@ const config = {
                 loader: 'vue-loader'
             },
             {
+                // test: /\.jsx?$/|/\.js$/,
                 test: /\.jsx?$/,
                 loader: 'babel-loader',
             },
@@ -71,7 +72,10 @@ const config = {
                 }
             }
         ),//给webpack 在编译时和html中可以引用
-        new HTMLPlugin()//html
+         // new HTMLPlugin()//html
+        new HTMLPlugin({
+            title: ""
+        })
     ]
 }
 if (isDev) {

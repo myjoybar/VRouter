@@ -5,7 +5,13 @@ const root = document.createElement('div')
 document.body.appendChild(root);
 new Vue({
     router,
-    render: h => h(App)
+    render: function (createElement) {
+        // router.push(context.url)
+        // context.meta = meta // and here
+        return createElement(
+            App
+        )
+    }
 }).$mount(root)
 
 // new Vue({

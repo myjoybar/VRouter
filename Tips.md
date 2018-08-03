@@ -85,5 +85,11 @@
 - 16 axios
   - vue更新到2.0之后，作者就宣告不再对vue-resource更新，而是推荐的axios,前一段时间用了一下，现在说一下它的基本用法。
   - cnpm install axios
-   
+  
+- 17 vue-meta
+  - vue更新到2.0之后，作者就宣告不再对vue-resource更新，而是推荐的axios,前一段时间用了一下，现在说一下它的基本用法。
+  - npm install vue-meta-info --save
+  - npm install vue-head
+  - cnpm install vue-head
+
    
